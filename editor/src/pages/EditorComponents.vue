@@ -2,15 +2,12 @@
   <div class="editor-components">
 
     <components-group
-      label="容器"
-      :components="list1"
+      v-for="(item, index) in list"
+      :key="index"
+      :label="item.label"
+      :components="item.components"
       @move="(e, component) => $emit('move', e, component)"
-      @drag-end="(e) => $emit('drag-end', e)"
-    ></components-group>
-
-    <components-group
-      label="表单"
-      :components="list2"
+      @drag-end="(e, component) => $emit('drag-end', e, component)"
     ></components-group>
 
   </div>
@@ -26,12 +23,20 @@ export default {
 
   data () {
     return {
-      list1: [
-        { name: 'container DIV容器', component: 'div-container' }
-      ],
-      list2: [
-        { name: 'input 输入框', component: 'el-input' },
-        { name: 'select 选择框', component: 'el-select' }
+      list: [
+        {
+          label: '容器',
+          components: [
+            { name: 'container DIV容器', component: 'div-container' }
+          ]
+        },
+        {
+          label: '表单',
+          components: [
+            { name: 'input 输入框', component: 'el-input' },
+            { name: 'select 选择框', component: 'el-select' }
+          ]
+        }
       ]
     }
   }

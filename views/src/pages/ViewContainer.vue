@@ -1,10 +1,13 @@
 <template>
-  <div class="lego-view"></div>
+  <div class="lego-view" v-html="data"></div>
 </template>
 
 <script>
 export default {
-  name: 'ViewContainer'
+  name: 'ViewContainer',
+  props: {
+    data: String
+  }
 }
 </script>
 

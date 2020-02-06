@@ -49,10 +49,10 @@ export default {
       window.addEventListener('mousemove', this.mousemoveEvent)
     },
     mouseupEvent (e) {
+      this.$emit('drag-end', e, this.movingComponent)
       this.movingComponent = ''
       window.removeEventListener('mousemove', this.mousemoveEvent)
       window.removeEventListener('mouseup', this.mouseupEvent)
-      this.$emit('drag-end', e)
     },
     mousemoveEvent (e) {
       this.$emit('move', e, this.movingComponent)

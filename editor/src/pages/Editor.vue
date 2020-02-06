@@ -35,6 +35,7 @@ export default {
       if (this.isInMask) {
         const params = {
           component,
+          event: 'move',
           position: {
             x: e.offsetX,
             y: e.offsetY
@@ -43,7 +44,19 @@ export default {
         this.$refs.view.contentWindow.postMessage(JSON.stringify(params), '*')
       }
     },
-    dragEnd () {},
+    dragEnd (e, component) {
+      if (this.isInMask) {
+        const params = {
+          component,
+          event: 'drag-end',
+          position: {
+            x: e.offsetX,
+            y: e.offsetY
+          }
+        }
+        this.$refs.view.contentWindow.postMessage(JSON.stringify(params), '*')
+      }
+    },
     mouseenter () {
       this.isInMask = true
     },
